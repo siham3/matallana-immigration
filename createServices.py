@@ -42,21 +42,28 @@ def generate_service_pages(csv_file, template_file):
             main_image['alt'] = row['Name']
         
         # Update program details
-        project_details = soup.find('div', class_='project-details-grid')
+        project_details = soup.find('div', class_='div-block-9')
         if project_details:
             details_wraps = project_details.find_all('div', class_='details-wrap')
 
             if len(details_wraps) >= 3:
-                # Ensure text is safely replaced
-                details_wraps[0].find('div', class_='paragraph-light').string = str(row['Para 1'])
-                details_wraps[1].find('div', class_='paragraph-light').string = str(row['Para 2'])
-                details_wraps[2].find('div', class_='paragraph-light').string = str(row['Para 3'])
+                # Label 1 and Para 1
+                details_wraps[0].find('h5', class_='label').string = row['Label 1']
+                details_wraps[0].find('div', class_='paragraph-light').string = row['Para 1']
+                
+                # Label 2 and Para 2
+                details_wraps[1].find('h5', class_='label').string = row['Label 2']
+                details_wraps[1].find('div', class_='paragraph-light').string = row['Para 2']
+                
+                # Label 3 and Para 3
+                details_wraps[2].find('h5', class_='label').string = row['Label 3']
+                details_wraps[2].find('div', class_='paragraph-light').string = row['Para 3']
         
-        # Update main body text
-        main_content = soup.find('div', class_='paragraph-light', recursive=True)
-        if main_content:
-            main_content.clear()
-            main_content.append(BeautifulSoup(str(row['Para 4']), 'html.parser'))
+        # Update main body content (Para 4)
+        main_body = soup.find('div', id='w-node-_75ab2732-2bca-8751-30ac-e080c8b2255c-83bb10d8')
+        if main_body:
+            main_body.clear()
+            main_body.append(BeautifulSoup(f"<p>{row['Para 4']}</p>", 'html.parser'))
         
         # Save the generated page
         output_file = f"output_pages/{row['Slug']}.html"
