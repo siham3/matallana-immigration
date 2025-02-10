@@ -1779,7 +1779,7 @@ textarea.w-select {
 .w-dyn-hide {
   display: none !important;
 }
-.  {
+.w-dyn-bind-empty {
   display: none !important;
 }
 .w-condition-invisible {

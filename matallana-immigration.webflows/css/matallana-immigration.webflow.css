@@ -344,7 +344,7 @@ figcaption {
   text-transform: uppercase;
   background-color: #ff7757;
   border-radius: 16px;
-  margin-bottom: 10px;
+  --margin-bottom: 10px;
   padding: 12px 25px;
   font-size: 12px;
   line-height: 20px;
@@ -368,6 +368,13 @@ figcaption {
 }
 
 .primary-button.cc-contact-us {
+  z-index: 5;
+  background-color: #ff7757;
+  border-radius: 16px;
+  position: relative;
+}
+
+.primary-button.bb-contact-us {
   z-index: 5;
   background-color: #ff7757;
   border-radius: 16px;
@@ -417,6 +424,7 @@ figcaption {
 
 .label.cc-blog-date.paragraph.utility-text-secondary {
   color: var(--black);
+  font-size: 14px;
 }
 
 .heading-jumbo-tiny {
